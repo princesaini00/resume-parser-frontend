@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from dotenv import load_dotenv
+import os
 
 # Load env vars
 load_dotenv()
@@ -16,5 +17,16 @@ CORS(app)
 app.register_blueprint(filter_api_blueprint)
 app.register_blueprint(resume_parser_blueprint)
 
+@app.route('/')
+def index():
+    return {"status": "Flask API is running"}
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
+
+# if __name__ == "__main__":
+#     app.run(debug=True)
+
+
+
+
