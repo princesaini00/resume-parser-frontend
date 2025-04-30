@@ -5,6 +5,7 @@ import { storage } from '@/lib/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { API_URL } from '../../../../config/api';
 
 export async function POST(request: Request) {
   try {
@@ -72,7 +73,7 @@ export async function POST(request: Request) {
 
       console.log("Sending resume to parsing server...");
       
-      const parseResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/parse-resume`, {
+      const parseResponse = await fetch(`${API_URL}/parse-resume`, {
         method: "POST",
         body: parseFormData,
       });

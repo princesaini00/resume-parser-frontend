@@ -2,6 +2,7 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import EmployeeNavbar from "../resume-filter/components/EmployeeNavbar";
+import { API_URL } from "../../../config/api";
 
 type Resume = {
   name: string;
@@ -45,7 +46,7 @@ export default function ResumeResults() {
 
         console.log("Sending filters to API:", filters);
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/filter-resumes`, {
+        const response = await fetch(`${API_URL}}/filter-resumes`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
